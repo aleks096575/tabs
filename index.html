@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Todo list</title>
+	<style type="text/css">
+
+		* {
+			box-sizing: border-box;
+		}
+		main {
+			max-width: 70rem;
+			margin: 0 auto;
+			display: flex;
+			flex-direction: column;
+		}
+		ul {
+			margin: 0;
+			padding: 0;
+		}
+		ul li {
+			cursor: pointer;
+			position: relative;
+			padding: 12px 8px 12px 40px;
+			background: #eee;
+			font-size: 18px;
+			transition: 0.2s;
+			user-select: none;
+			list-style-type: none;
+		}
+		ul li:nth-child(odd) {
+			background: #f9f9f9;
+		}
+		ul li:hover {
+			background: #ddd;
+		}
+		ul li.checked {
+			background: #888;
+			color: #fff;
+			text-decoration: line-through;
+		}
+		ul li.checked::before {
+			content: "";
+			position: absolute;
+			border-color: #fff;
+			border-style: solid;
+			border-width: 0 2px 2px 0;
+			top: 10px;
+			left: 16px;
+			transform: rotate(45deg);
+			height: 19px;
+			width: 7px;
+		}
+		.close {
+			position: absolute;
+			right: 0;
+			top: 0;
+			padding: 12px 16px 12px 16px;
+
+		}
+		.close:hover {
+			background-color: #f44336;
+			color: white;
+		}
+		.header {
+			background-color: #f44336;
+			padding: 30px 40px;
+			color: white;
+			text-align: center;
+		}
+		.header:after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+		input {
+			cursor: cell;
+			border: none;
+			width: 75%;
+			padding: 10px;
+			float: left;
+			font-size: 16px;
+		}
+		.addBtn {
+			padding: 10px;
+			width: 25%;
+			background: #d9d9d9;
+			color: #555;
+			float: left;
+			text-align: center;
+			font-size: 16px;
+			cursor: pointer;
+			transition: 0.3s;
+			overflow: hidden;
+		}
+		.addBtn:hover {
+			background-color: #bbb;
+		}
+		.wrapper {
+			width: 100%;
+			margin: 0 auto;
+		}
+		.tabs-nav {
+			display: flex;
+			justify-content: space-between;
+		}
+		.tabs-nav__item {
+			text-align: center;
+			color: maroon;
+			font-size: 33px;
+			font-weight: bolder;
+			padding: 20px;
+			flex: 1;
+			border-bottom: 1px solid transparent;
+			cursor: pointer;
+		}
+		.tabs-nav__item.is-active {
+			border-bottom: 9px solid #55a32a;
+
+		}
+		.tab {
+			background-color: #f2f2f2;
+			display: none;
+			padding: 20px;
+		}
+		.tab.is-active {
+			display: block;
+			height: 30rem;
+		}
+		#passs {
+			box-sizing: border-box;
+			width: 100%;
+			font-size: 18px;
+			border: none;
+			padding: 11px;
+			border-radius: 3px;
+			letter-spacing: 1px;
+			box-shadow: 0 5px 30px rgba(22,89,233,0.4);
+		}
+		::placeholder {
+			color: green;
+			font-weight: 444;
+		}
+		#wraa {
+			position: relative;
+			transform: translate(-50%, -50%);
+			top: 50%;
+			left: 50%;
+			width: 44vw;
+			border: 3px solid navy;
+		}
+		#eye {
+			position: absolute;
+			right: 15px;
+			transform: translate(0, -50%);
+			top: 50%;
+			cursor: pointer;
+		}
+		
+		fa {
+			font-size: 23px;
+			color: magenta;
+		}
+		.shell {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+		
+		.btnn {
+			width: 80px;
+			height: 40px;
+			background: gray;
+			border-radius: 30px;
+			padding: 5px;
+			transition: all 500ms ease-in-out;
+		}
+		.btnn > .circle {
+			width: 40px;
+			height: 40px;
+			background: white;
+			border-radius: 50%;
+			transition: all 500ms ease-in-out;
+		}
+		.btnn.act {
+			background: green;
+		}
+		.btnn.act > .circle {
+			margin-left: 40px;
+		}
+		
+	</style>
+</head>
+<body>
+
+<main>
+	<div class="wrapper">
+	  <div class="tabs">
+		<div class="tabs__nav tabs-nav">
+
+		<div class="tabs-nav__item is-active"  data-tab-name="tab-3">Tab 3</div>
+
+			<div class="tabs-nav__item" data-tab-name="tab-4">Tab 4</div>
+
+		</div>
+
+		<div class="tabs__content">
+
+		<div class="tab is-active tab-3">
+			
+			<div id="wraa">
+			<input type="password" placeholder="Password" id="passs">
+			<span id="eye">
+				<i class="fa fa-eye" aria-hidden="true" id="eye" onclick="toggle()"></i>
+			</span>
+			
+			<div id="myDiv" class="header">
+		<h2>To Do app</h2>
+		<input type="text" id="myInput" placeholder="Title">
+		<span class="addBtn" onclick="newElement()">Add</span>
+	</div>
+
+	<ul id="myUl">
+		<li class="checked">Task 1</li>
+		<li>Task 2</li>
+		<li>Task 3</li>
+		<li>Task 4</li>
+		<li>Task 5</li>
+	</ul>
+		</div>
+	</div>
+
+		<div class="tab tab-4">
+			<h1>Forteen text</h1>
+			<div class="shell">
+				<div class="btnn" onclick="this.classList.toggle('act')">
+					<div class="circle"></div>
+				</div>
+			</div>
+			<div id="info"></div>
+		</div>
+	</div>
+</div>
+</div>
+
+	
+
+	</main>
+
+	<script type="text/javascript">
+
+	var x = document.getElementsByTagName('LI');
+	
+	for ( i = 0; i < x.length; i++) {
+	var elem = document.createElement("span");
+	var txt = document.createTextNode('\u00D7');
+	elem.className = 'close';
+	elem.appendChild(txt);
+	x[i].appendChild(elem);
+	}
+	
+
+
+	var close = document.getElementsByClassName('close');
+	var i;
+	for( i = 0; i <close.length; i++) {
+		close[i].onclick = function() {
+			var div = this.parentElement;
+			div.style.display = 'none';
+		}
+	}
+
+	var list = document.querySelector('ul');
+	list.addEventListener('click', function(ev) {
+		if(ev.target.tagName === 'LI') {
+			ev.target.classList.toggle('checked');
+		}
+	});
+
+	function newElement() {
+		var li = document.createElement('li');
+		var inp = document.getElementById('myInput').value;
+		var t = document.createTextNode(inp);
+		li.appendChild(t);
+		if(inp === '') {
+			return;
+		}
+		else {
+		document.getElementById('myUl').appendChild(li);
+		}
+		document.getElementById('myInput').value ='';
+	 	var elem = document.createElement("span");
+		 var txt = document.createTextNode('\u00D7');
+	 	elem.appendChild(txt);
+		elem.className = 'close';
+		li.appendChild(elem);
+
+	 	for( i = 0; i < close.length; i++) {
+	 	close[i].onclick = function() {
+	 		var div = this.parentElement;
+	 		div.style.display = 'none';
+	 	}
+	  }
+	}
+
+	let tab = function() {
+	let tabNav = document.querySelectorAll('.tabs-nav__item'),
+	tabContent = document.querySelectorAll('.tab'),
+	tabName;
+	tabNav.forEach(item => {
+		item.addEventListener('click', selectTabNav)
+	});
+
+	function selectTabNav() {
+		tabNav.forEach(item => {
+			item.classList.remove('is-active');
+		});
+		this.classList.add('is-active');
+		tabName = this.getAttribute('data-tab-name');
+		selectTabContent(tabName);
+		console.log(tabNav);
+	}
+	function selectTabContent(tabName) {
+		tabContent.forEach(item => {
+			item.classList.contains(tabName) ? item.classList.add('is-active') : 
+			item.classList.remove('is-active');
+		})
+	}
+};
+
+tab();
+
+var inf = document.getElementById('info');
+console.log(window.location);
+inf.textContent += 'Size this page: ' + window.outerWidth + ' on ' + window.outerHeight;
+
+var staa = false;
+function toggle() {
+		document.getElementById('passs').setAttribute("type", "password");
+		document.getElementById("eye").style.color='green';
+		staa = false;
+	if (staa) {
+	}
+	else{
+		document.getElementById('passs').setAttribute("type", "text");
+		document.getElementById("eye").style.color='maroon';
+		staa = true;
+	}
+}
+
+	</script>
+	
+</body>
+</html>
